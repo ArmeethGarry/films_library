@@ -46,12 +46,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
         let newFilms = addInput.value;
         let favorit = checkbox.checked;
 
-        movieDB.movies.push( newFilms.toUpperCase() );
-        sortArr( movieDB.movies );
+        if( newFilms ) {
+            movieDB.movies.push( newFilms.toUpperCase() );
+            sortArr( movieDB.movies );
 
-        creatMovieList( movieList, movieDB.movies );
+            creatMovieList( movieList, movieDB.movies );
+        }
 
         event.target.reset();
+        
     });
     
     function delElems( array ) {
