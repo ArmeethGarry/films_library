@@ -47,6 +47,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
         let favorit = checkbox.checked;
 
         if( newFilms ) {
+            if( newFilms.length > 21 ) {
+                newFilms = `${newFilms.slice(0, 22)}...`;
+            }
             movieDB.movies.push( newFilms.toUpperCase() );
             sortArr( movieDB.movies );
 
@@ -54,7 +57,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         }
 
         event.target.reset();
-        
+
     });
     
     function delElems( array ) {
