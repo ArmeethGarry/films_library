@@ -71,12 +71,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
         });
     }
     
-    function sortArr( arr ) {
-        arr.sort();
-    }
+    function sortArr ( array ) {
+        array.sort();
+    };
 
     function creatMovieList( arr, parent ) {
         parent.innerHTML = '';
+        sortArr( movieDB.movies );
+        
         arr.forEach( (elem, i) => {
             parent.innerHTML += `
                 <li class="promo__interactive-item">${i+1} ${elem}
@@ -99,6 +101,5 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     delElems( advs );
     creatMovieList( movieDB.movies, movieList );
-    sortArr( movieList );
 
 });
