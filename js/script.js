@@ -40,8 +40,18 @@ document.addEventListener( 'DOMContentLoaded', () => {
     bgHeader.style.backgroundImage = 'url("img/bg.jpg")';
     genre.textContent = 'драма';
 
-    addEventListener( 'submit', () => {
-        
+    addEventListener( 'submit', ( event ) => {
+        event.preventDefault();
+
+        let newFilms = addInput.value;
+        let favorit = checkbox.checked;
+
+        movieDB.movies.push( newFilms.toUpperCase() );
+        sortArr( movieDB.movies );
+
+        creatMovieList( movieList, movieDB.movies );
+
+        event.target.reset();
     });
     
     function delElems( array ) {
