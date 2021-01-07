@@ -53,7 +53,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
             movieDB.movies.push( newFilms.toUpperCase() );
             sortArr( movieDB.movies );
 
-            creatMovieList( movieList, movieDB.movies );
+            creatMovieList( movieDB.movies, movieList );
         }
 
         event.target.reset();
@@ -71,9 +71,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
     }
 
     function creatMovieList( arr, parent ) {
-        arr.innerHTML = '';
-        parent.forEach( (elem, i) => {
-            arr.innerHTML += `
+        parent.innerHTML = '';
+        arr.forEach( (elem, i) => {
+            parent.innerHTML += `
                 <li class="promo__interactive-item">${i+1} ${elem}
                     <div class="delete"></div>
                 </li>
@@ -85,7 +85,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 btn.parentElement.remove();
                 movieDB.movies.splice( i, 1);
 
-                creatMovieList( movieList, movieDB.movies );
+                creatMovieList( movieDB.movies, movieList );
 
             });
 
@@ -93,7 +93,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
     }
 
     delElems( advs );
-    creatMovieList( movieList, movieDB.movies );
+    creatMovieList( movieDB.movies, movieList );
     sortArr( movieList );
 
 });
