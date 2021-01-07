@@ -32,11 +32,17 @@ document.addEventListener( 'DOMContentLoaded', () => {
           bgHeader = contentHeader.querySelector( '.promo__bg' ),
           genre = bgHeader.querySelector('.promo__genre'),
           movieList = document.querySelector( '.promo__interactive-list' ),
-          advs = document.querySelectorAll( '.promo__adv img' );
+          advs = document.querySelectorAll( '.promo__adv img' ),
+          form = document.querySelector( 'form.add' ),
+          addInput = form.querySelector( '.adding__input' ),
+          checkbox = form.querySelector( '[type="checkbox"]' );
     
     bgHeader.style.backgroundImage = 'url("img/bg.jpg")';
     genre.textContent = 'драма';
-    movieList.innerHTML = '';
+
+    addEventListener( 'submit', () => {
+        
+    });
     
     function delElems( array ) {
         array.forEach( elem => {
@@ -44,14 +50,23 @@ document.addEventListener( 'DOMContentLoaded', () => {
         });
     }
     
+    function sortArr( arr ) {
+        arr.sort();
+    }
+
+    function creatMovieList( arr, parent ) {
+        arr.innerHTML = '';
+        parent.forEach( (elem, i) => {
+            arr.innerHTML += `
+                <li class="promo__interactive-item">${i+1} ${elem}
+                    <div class="delete"></div>
+                </li>
+            `
+        });
+    }
+
     delElems( advs );
-    
-    movieDB.movies.sort();
-    movieDB.movies.forEach( (elem, i) => {
-        movieList.innerHTML += `
-            <li class="promo__interactive-item">${i+1} ${elem}
-                <div class="delete"></div>
-            </li>
-        `
-    })
+    creatMovieList( movieList, movieDB.movies );
+    sortArr( movieList );
+
 });
